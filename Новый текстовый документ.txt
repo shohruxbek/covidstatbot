@@ -1,0 +1,42 @@
+<?php
+
+$get = json_decode(file_get_contents("https://covid.delalify.com/api/countries?country_code=UZ"));
+
+$confirmed = $get->response->confirmed;
+$confirmedToday = $get->response->confirmedToday;
+$recovered = $get->response->recovered;
+$deaths = $get->response->deaths;
+$deathsToday = $get->response->deathsToday;
+$active = $get->response->active;
+$yangilangan = $get->response->lastUpdated;
+$ex = explode("T",$yangilangan);
+$kun = $ex[0];
+$soat = explode(".",$ex[1]);
+$vaqt = $soat[0];
+
+
+
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Koronavirus statistikasi O'zbekiston</title>
+	<meta property="og:title" content="Koronavirus statistikasi O'zbekiston">
+	<meta property="og:description" content="Jami aniqlangan: <?= $confirmed ?> Bugun aniqlangan: <?= $confirmedToday ?> Sog'aygan: <?= $recovered ?> Vafot etgan: <?= $deaths ?> Bugun vafot etgan: <?= $deathsToday ?> Ma'lumotlar yangilangan vaqt: <?= $kun." ".$vaqt ?>">
+</head>
+<body>
+    <header>
+    <h1>Koronavirus statistikasi O'zbekiston</h1>
+    </header>
+    <article>
+	<p>Jami aniqlangan: <?= $confirmed ?></p>
+	<p>Bugun aniqlangan: <?= $confirmedToday ?></p>
+	<p>Sog'aygan: <?= $recovered ?></p>
+	<p>Vafot etgan: <?= $deaths ?></p>
+	<p>Bugun vafot etgan: <?= $deathsToday ?></p>
+	<p>Ma'lumotlar yangilangan vaqt: <?= $kun." ".$vaqt ?></p>
+    </article>
+</body>
+</html>
